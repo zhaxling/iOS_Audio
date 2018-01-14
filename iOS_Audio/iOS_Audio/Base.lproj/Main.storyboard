@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Psl-Bu-V0n">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Xsi-oG-WQu">
+            <objects>
+                <navigationController id="Psl-Bu-V0n" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qvF-5x-NVE">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="NwR-um-6ng"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gn7-Mw-uwW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-927" y="-146"/>
+        </scene>
+        <!--SoundTouch-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_Audio" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hjA-Fz-JlW"/>
+                        <viewControllerLayoutGuide type="bottom" id="an7-sZ-PSy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wvp-57-MaZ">
+                                <rect key="frame" x="67" y="266" width="240" height="135"/>
+                                <color key="backgroundColor" red="0.99784797430000005" green="0.43278560040000003" blue="0.30579090120000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="PQT-pr-t1n" appends="YES" id="hmL-rE-fTl"/>
+                                </connections>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJP-o2-GK7">
+                                <rect key="frame" x="67" y="429" width="74" height="88"/>
+                                <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="8xp-jk-KV8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="声音封皮">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="envelopeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qHO-jb-iVz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tei-y4-69E">
+                                <rect key="frame" x="67" y="545" width="31" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="暂停">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rA4-Bn-AZl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmK-0b-2Ur">
+                                <rect key="frame" x="0.0" y="120" width="375" height="88"/>
+                                <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="IUZ-Cl-7w2"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="ozB-lP-4gE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="SoundTouch">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="soundTouchAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eC2-xg-iGS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yJP-o2-GK7" firstAttribute="leading" secondItem="wvp-57-MaZ" secondAttribute="leading" id="2b5-b2-9Dn"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yJP-o2-GK7" secondAttribute="trailing" constant="20" symbolic="YES" id="3Gm-FJ-bpa"/>
+                            <constraint firstItem="yJP-o2-GK7" firstAttribute="top" secondItem="wvp-57-MaZ" secondAttribute="bottom" constant="28" id="BAP-0B-1Lc"/>
+                            <constraint firstItem="wvp-57-MaZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q3s-a0-zGV"/>
+                            <constraint firstItem="wvp-57-MaZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="ZUr-WK-ufh"/>
+                            <constraint firstItem="wvp-57-MaZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aHl-Ny-GWb"/>
+                            <constraint firstItem="GmK-0b-2Ur" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="dqD-PK-lgV"/>
+                            <constraint firstItem="Tei-y4-69E" firstAttribute="top" secondItem="yJP-o2-GK7" secondAttribute="bottom" constant="28" id="ph2-gA-AkX"/>
+                            <constraint firstItem="GmK-0b-2Ur" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q2b-cS-ZJx"/>
+                            <constraint firstItem="GmK-0b-2Ur" firstAttribute="top" secondItem="hjA-Fz-JlW" secondAttribute="bottom" constant="56" id="r1k-mb-Xry"/>
+                            <constraint firstItem="wvp-57-MaZ" firstAttribute="top" secondItem="hjA-Fz-JlW" secondAttribute="bottom" constant="202" id="sWs-TD-kNh"/>
+                            <constraint firstItem="Tei-y4-69E" firstAttribute="leading" secondItem="yJP-o2-GK7" secondAttribute="leading" id="yaN-Rf-gJB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="SoundTouch" id="QTw-41-WjN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="PQT-pr-t1n">
+                    <connections>
+                        <action selector="tapAction:" destination="BYZ-38-t0r" id="4ip-uu-yMw"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-183" y="-146"/>
+        </scene>
+    </scenes>
+</document>

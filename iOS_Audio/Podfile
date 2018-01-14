@@ -1,0 +1,10 @@
+source "https://github.com/CocoaPods/Specs.git"
+
+platform :ios, "10.0"
+use_frameworks!
+
+target “iOS_Audio” do
+
+pod 'AudioKit'
+    
+end
