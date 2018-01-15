@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0CB9CFF4FC59BC6FBE49CD79 /* Pods_iOS_Audio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C45AF8A17378159139585F /* Pods_iOS_Audio.framework */; };
+		1866B1BC200C568400E53715 /* STListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866B1BB200C568400E53715 /* STListsViewController.swift */; };
+		1866B1BE200C574000E53715 /* URL+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866B1BD200C574000E53715 /* URL+FileManager.swift */; };
 		18739B301FEA5F0300D2B160 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18739B2F1FEA5F0300D2B160 /* AppDelegate.swift */; };
 		18739B321FEA5F0300D2B160 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18739B311FEA5F0300D2B160 /* ViewController.swift */; };
 		18739B351FEA5F0300D2B160 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18739B331FEA5F0300D2B160 /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		101A03B8D75BFF5FAB9D852D /* Pods-iOS_Audio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_Audio.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_Audio/Pods-iOS_Audio.release.xcconfig"; sourceTree = "<group>"; };
 		11C45AF8A17378159139585F /* Pods_iOS_Audio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Audio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1866B1BB200C568400E53715 /* STListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STListsViewController.swift; sourceTree = "<group>"; };
+		1866B1BD200C574000E53715 /* URL+FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+FileManager.swift"; sourceTree = "<group>"; };
 		18739B2C1FEA5F0300D2B160 /* iOS_Audio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Audio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18739B2F1FEA5F0300D2B160 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18739B311FEA5F0300D2B160 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 				18739B3B1FEA5F0300D2B160 /* Info.plist */,
 				1875A9872008A523004BC1A2 /* STVoiceViewController.swift */,
 				1875A9882008A523004BC1A2 /* STVoiceViewController.xib */,
+				1866B1BD200C574000E53715 /* URL+FileManager.swift */,
 			);
 			path = iOS_Audio;
 			sourceTree = "<group>";
@@ -84,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				1875A9912008BCE0004BC1A2 /* 录音 */,
+				1866B1BB200C568400E53715 /* STListsViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -245,10 +251,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1866B1BE200C574000E53715 /* URL+FileManager.swift in Sources */,
 				18739B321FEA5F0300D2B160 /* ViewController.swift in Sources */,
 				1875A9892008A523004BC1A2 /* STVoiceViewController.swift in Sources */,
 				1875A9932008BD34004BC1A2 /* AudioManager.swift in Sources */,
 				18739B301FEA5F0300D2B160 /* AppDelegate.swift in Sources */,
+				1866B1BC200C568400E53715 /* STListsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S4HH4QULF9;
+				DEVELOPMENT_TEAM = 5836W9K38T;
 				INFOPLIST_FILE = iOS_Audio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -404,7 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S4HH4QULF9;
+				DEVELOPMENT_TEAM = 5836W9K38T;
 				INFOPLIST_FILE = iOS_Audio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
