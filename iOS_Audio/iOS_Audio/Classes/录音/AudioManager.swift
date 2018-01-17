@@ -43,22 +43,14 @@ class AudioManager: NSObject {
     
     // 当前状态
     var state:AudioState = .Idle
-    //let manager:AudioManager = AudioManager()
+    static let manager:AudioManager = AudioManager()
     
     
     //MARK: - 录音
     var recorderDelegate:AudioRecorderDelegate?
-    var recorderPath:String?
-    
-    init(path:String,delegate:AudioRecorderDelegate) {
-        //super.init()
-        recorderDelegate = delegate
-        recorderPath = path
-    }
+    var recorderUrl:URL?
     
     lazy var recorder: AVAudioRecorder? = {
-        
-        let url = URL(fileURLWithPath: recorderPath!)
         
         let settings: [String: Any] = [
             AVFormatIDKey: kAudioFormatAppleLossless,
@@ -72,7 +64,7 @@ class AudioManager: NSObject {
         do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             
-            let recorder = try AVAudioRecorder(url: url, settings: settings)
+            let recorder = try AVAudioRecorder(url: recorderUrl!, settings: settings)
             recorder.delegate = self
             recorder.isMeteringEnabled = true
             recorder.prepareToRecord()
@@ -91,10 +83,13 @@ class AudioManager: NSObject {
     var currentTime:TimeInterval = 0
     
     
-    func start() {
+    func start(url:URL, delegate:AudioRecorderDelegate) -> Bool {
+        recorderDelegate = delegate
+        recorderUrl = url
+        
         if (recorder?.isRecording)! {
             print("正在录制")
-            return
+            return false
         }
         
         let audioSession = AVAudioSession.sharedInstance()
@@ -104,11 +99,11 @@ class AudioManager: NSObject {
                 currentTime = 0
                 recorderTimer.fire()
                 recorderDelegate?.recorderDidStart?()
+                return true
             }
         } catch {
         }
-        
-
+        return false
     }
     
     func pause() {
