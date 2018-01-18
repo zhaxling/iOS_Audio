@@ -25,6 +25,7 @@ class STVoiceViewController: UIViewController {
         // 添加按钮
         view.addSubview(self.startButton)
         view.addSubview(self.endButton)
+        view.addSubview(self.listButton)
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,21 +33,24 @@ class STVoiceViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    let recorder = AudioManager.manager
+    
     
     /**
      * 0 开始录音 没有录音
      * 1 录音中 暂停录音
      */
+    var _type: UInt8 = 0
     var type : UInt8 {
         get {
-            return self.type
+            return _type
         }
         set {
-            self.type = newValue
-            if type == 0 {
+            _type = newValue
+            if _type == 0 {
                 self.startButton.setTitle("开始录音", for: .normal)
             }
-            else if type == 1 {
+            else if _type == 1 {
                 self.startButton.setTitle("暂停录音", for: .normal)
             }
         }
@@ -59,7 +63,7 @@ class STVoiceViewController: UIViewController {
         btn.backgroundColor = UIColor.red
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         btn.addTarget(self, action: #selector(startAction), for: UIControlEvents.touchUpInside)
-        btn.frame = CGRect(x: screenBounds.width * 0.7, y: screenBounds.height - screenBounds.width * 0.2 - 28, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
+        btn.frame = CGRect(x: screenBounds.width * 0.4, y: screenBounds.height - screenBounds.width * 0.2 - 28, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
         btn.layer.cornerRadius = screenBounds.width * 0.1
         return btn
     }()
@@ -70,7 +74,7 @@ class STVoiceViewController: UIViewController {
         btn.backgroundColor = UIColor.red
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         btn.addTarget(self, action: #selector(endAction), for: UIControlEvents.touchUpInside)
-        btn.frame = CGRect(x: screenBounds.width * 0.4, y: screenBounds.height - screenBounds.width * 0.2 - 28, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
+        btn.frame = CGRect(x: screenBounds.width * 0.7, y: screenBounds.height - screenBounds.width * 0.2 - 28, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
         btn.layer.cornerRadius = screenBounds.width * 0.1
         return btn
     }()
@@ -95,7 +99,7 @@ class STVoiceViewController: UIViewController {
             let currentDateTime = Date()
             let formatter = DateFormatter()
             formatter.dateFormat = "ddMMyyyyHHmmss"
-            let recordingName = formatter.string(from: currentDateTime)+".caf"
+            let recordingName = formatter.string(from: currentDateTime)+".m4a"
             
             let fileManager = FileManager.default
             let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
@@ -104,21 +108,19 @@ class STVoiceViewController: UIViewController {
             let soundURL = audioPath?.appendingPathComponent(recordingName)//将音频文件名称追加在可用路径上形成音频文件的保存路径
             print(soundURL as Any)
             
-            let recorder = AudioManager.manager
+            
             let isRecording = recorder.start(url: soundURL!, delegate: self)
             if isRecording {
                 self.type = 1
             }
         } else if type == 1 {
             print("暂停录音")
-            let recorder = AudioManager.manager
             recorder.pause()
         }
     }
     
     @objc func endAction() {
-        let recorder = AudioManager.manager
-        recorder.stop()
+        recorder.finish()
     }
     
     @objc func listAction() {

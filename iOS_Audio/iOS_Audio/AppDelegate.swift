@@ -26,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.isStatusBarHidden = false
         
+        window = UIWindow(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+        window?.backgroundColor = UIColor.white
+        let rootVC = UINavigationController(rootViewController: AUViewController())
+        window?.rootViewController = rootVC
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

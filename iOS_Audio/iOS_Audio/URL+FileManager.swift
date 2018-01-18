@@ -10,7 +10,7 @@ import Foundation
 
 extension URL {
     
-    static func getFilesPath(_ dirUrl: URL) -> [String]? {
+    static func getFilesPath(_ dirPath: String) -> [String]? {
         var filePaths = [String]()
         
         do {
