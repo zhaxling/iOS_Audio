@@ -43,7 +43,7 @@ class AudioManager: NSObject {
     
     // 当前状态
     var state:AudioState = .Idle
-    static let manager:AudioManager = AudioManager()
+    static let manager:AudioManager = AudioManager.init()
     
     
     //MARK: - 录音
@@ -80,8 +80,12 @@ class AudioManager: NSObject {
         RunLoop.main.add(timer, forMode: .commonModes)
         return timer
     }()
-    var currentTime:TimeInterval = 0
     
+    lazy var powerTimer: Timer = {
+        let timer = Timer(timeInterval: 1, target: self, selector: #selector(power), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: .commonModes)
+        return timer
+    }()
     
     func start(url:URL, delegate:AudioRecorderDelegate) -> Bool {
         recorderDelegate = delegate
@@ -96,12 +100,13 @@ class AudioManager: NSObject {
         do {
             try audioSession.setActive(true)
             if (recorder?.record())! {
-                currentTime = 0
                 recorderTimer.fire()
+                powerTimer.fire()
                 recorderDelegate?.recorderDidStart?()
                 return true
             }
         } catch {
+            print("失败 \(error.localizedDescription)")
         }
         return false
     }
@@ -109,11 +114,15 @@ class AudioManager: NSObject {
     func pause() {
         recorder?.pause()
         recorderTimer.invalidate()
+        powerTimer.invalidate()
         recorderDelegate?.recorderPause?()
     }
     
-    func stop() {
+    func finish() {
         recorder?.stop()
+        recorderTimer.invalidate()
+        powerTimer.invalidate()
+        recorderDelegate?.recorderDidFinish?()
     }
     
     // 定时器
@@ -122,6 +131,12 @@ class AudioManager: NSObject {
         // 代理返回时间 分 秒
         recorderDelegate?.recorder?(min: Int((recorder?.currentTime)! / 60), sec: Int((recorder?.currentTime.truncatingRemainder(dividingBy: 60))!))
     }
+    @objc func power()  {
+        recorderDelegate?.recorder?(currentTime: (recorder?.currentTime)!)
+        // 代理返回时间 分 秒
+        recorderDelegate?.recorder?(min: Int((recorder?.currentTime)! / 60), sec: Int((recorder?.currentTime.truncatingRemainder(dividingBy: 60))!))
+    }
+    
 }
 
 
