@@ -11,6 +11,8 @@ import UIKit
 class AUViewController: UIViewController {
 
     @IBOutlet weak var recorderButton: UIButton!
+    let recorder:AURecorder = AURecorder()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,6 +49,9 @@ class AUViewController: UIViewController {
          
          iOS提供了混音、均衡、格式转换、实时IO录制、回放、离线渲染、语音对讲(VoIP)等音频处理插件，它们都属于不同的AudioUnit，支持动态载入和使用。
          */
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +60,10 @@ class AUViewController: UIViewController {
     }
     
     @IBAction func recorderButtonClick(_ sender: Any) {
+        recorder.start()
+    }
+    @IBAction func stopButtonClick(_ sender: Any) {
+        recorder.stop()
     }
     
 }

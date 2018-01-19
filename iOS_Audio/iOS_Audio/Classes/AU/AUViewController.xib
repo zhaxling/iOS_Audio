@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,11 +37,28 @@
                         <action selector="recorderButtonClick:" destination="-1" eventType="touchUpInside" id="Z2K-CX-kqi"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-Bw-4XT">
+                    <rect key="frame" x="253.5" y="555" width="56" height="56"/>
+                    <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="Yjq-Jk-WDV"/>
+                        <constraint firstAttribute="width" constant="56" id="eSz-ID-c0g"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="暂停">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="stopButtonClick:" destination="-1" eventType="touchUpInside" id="51j-VZ-Jk3"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="A7h-gf-yS8" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Agl-gP-N48"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="A7h-gf-yS8" secondAttribute="bottom" constant="56" id="Hja-KE-sEm"/>
+                <constraint firstItem="5fh-Bw-4XT" firstAttribute="centerY" secondItem="A7h-gf-yS8" secondAttribute="centerY" id="glf-A8-wZi"/>
+                <constraint firstItem="5fh-Bw-4XT" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" multiplier="1.5" id="tCj-JV-gK8"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="-237" y="-163"/>
