@@ -11,19 +11,20 @@
 		1819ECC920109361007FA38C /* AUManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819ECC820109361007FA38C /* AUManager.swift */; };
 		1819ECCC201093A7007FA38C /* AUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819ECCA201093A7007FA38C /* AUViewController.swift */; };
 		1819ECCD201093A7007FA38C /* AUViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1819ECCB201093A7007FA38C /* AUViewController.xib */; };
-		1819ECCF20109433007FA38C /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819ECCE20109433007FA38C /* Const.swift */; };
 		18344125201192CE002FB9E0 /* AURecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18344124201192CE002FB9E0 /* AURecorder.m */; };
-		1866B1BC200C568400E53715 /* STListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866B1BB200C568400E53715 /* STListsViewController.swift */; };
-		1866B1BE200C574000E53715 /* URL+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866B1BD200C574000E53715 /* URL+FileManager.swift */; };
-		18739B301FEA5F0300D2B160 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18739B2F1FEA5F0300D2B160 /* AppDelegate.swift */; };
 		18739B321FEA5F0300D2B160 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18739B311FEA5F0300D2B160 /* ViewController.swift */; };
 		18739B351FEA5F0300D2B160 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18739B331FEA5F0300D2B160 /* Main.storyboard */; };
 		18739B371FEA5F0300D2B160 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18739B361FEA5F0300D2B160 /* Assets.xcassets */; };
 		18739B3A1FEA5F0300D2B160 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18739B381FEA5F0300D2B160 /* LaunchScreen.storyboard */; };
-		1875A9892008A523004BC1A2 /* STVoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875A9872008A523004BC1A2 /* STVoiceViewController.swift */; };
-		1875A98A2008A523004BC1A2 /* STVoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1875A9882008A523004BC1A2 /* STVoiceViewController.xib */; };
 		1875A9932008BD34004BC1A2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875A9922008BD34004BC1A2 /* AudioManager.swift */; };
 		D716155D200F8AC500455B56 /* AKRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716155C200F8AC500455B56 /* AKRecorder.swift */; };
+		D787C25A20136D2900FC7199 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787C25920136D2900FC7199 /* RootViewController.swift */; };
+		D787C26220137C7400FC7199 /* URL+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787C26120137C7400FC7199 /* URL+FileManager.swift */; };
+		D787C26720137D6B00FC7199 /* STListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787C26620137D6B00FC7199 /* STListsViewController.swift */; };
+		D787C26B20137D9900FC7199 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787C26920137D9900FC7199 /* AppDelegate.swift */; };
+		D787C26C20137D9900FC7199 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787C26A20137D9900FC7199 /* Const.swift */; };
+		D787C26F20137DAD00FC7199 /* STVoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D787C26D20137DAD00FC7199 /* STVoiceViewController.xib */; };
+		D787C27020137DAD00FC7199 /* STVoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787C26E20137DAD00FC7199 /* STVoiceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,24 +33,25 @@
 		1819ECC820109361007FA38C /* AUManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUManager.swift; sourceTree = "<group>"; };
 		1819ECCA201093A7007FA38C /* AUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUViewController.swift; sourceTree = "<group>"; };
 		1819ECCB201093A7007FA38C /* AUViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AUViewController.xib; sourceTree = "<group>"; };
-		1819ECCE20109433007FA38C /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
-		18344122201192CE002FB9E0 /* iOS_Audio-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS_Audio-Bridging-Header.h"; sourceTree = "<group>"; };
 		18344123201192CE002FB9E0 /* AURecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AURecorder.h; sourceTree = "<group>"; };
 		18344124201192CE002FB9E0 /* AURecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AURecorder.m; sourceTree = "<group>"; };
-		1866B1BB200C568400E53715 /* STListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STListsViewController.swift; sourceTree = "<group>"; };
-		1866B1BD200C574000E53715 /* URL+FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+FileManager.swift"; sourceTree = "<group>"; };
 		18739B2C1FEA5F0300D2B160 /* iOS_Audio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Audio.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		18739B2F1FEA5F0300D2B160 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18739B311FEA5F0300D2B160 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		18739B341FEA5F0300D2B160 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18739B361FEA5F0300D2B160 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18739B391FEA5F0300D2B160 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18739B3B1FEA5F0300D2B160 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1875A9872008A523004BC1A2 /* STVoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STVoiceViewController.swift; sourceTree = "<group>"; };
-		1875A9882008A523004BC1A2 /* STVoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = STVoiceViewController.xib; sourceTree = "<group>"; };
 		1875A9922008BD34004BC1A2 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		9715C8EF004894AFE6A381A5 /* Pods-iOS_Audio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_Audio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_Audio/Pods-iOS_Audio.debug.xcconfig"; sourceTree = "<group>"; };
 		D716155C200F8AC500455B56 /* AKRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKRecorder.swift; sourceTree = "<group>"; };
+		D787C25920136D2900FC7199 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		D787C26120137C7400FC7199 /* URL+FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+FileManager.swift"; sourceTree = "<group>"; };
+		D787C26620137D6B00FC7199 /* STListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STListsViewController.swift; sourceTree = "<group>"; };
+		D787C26820137D9100FC7199 /* iOS_Audio-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS_Audio-Bridging-Header.h"; sourceTree = "<group>"; };
+		D787C26920137D9900FC7199 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D787C26A20137D9900FC7199 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		D787C26D20137DAD00FC7199 /* STVoiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STVoiceViewController.xib; sourceTree = "<group>"; };
+		D787C26E20137DAD00FC7199 /* STVoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STVoiceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +74,6 @@
 				1819ECCB201093A7007FA38C /* AUViewController.xib */,
 				18344123201192CE002FB9E0 /* AURecorder.h */,
 				18344124201192CE002FB9E0 /* AURecorder.m */,
-				18344122201192CE002FB9E0 /* iOS_Audio-Bridging-Header.h */,
 			);
 			path = AU;
 			sourceTree = "<group>";
@@ -98,16 +99,10 @@
 		18739B2E1FEA5F0300D2B160 /* iOS_Audio */ = {
 			isa = PBXGroup;
 			children = (
+				D787C26420137D3E00FC7199 /* Other */,
 				1875A9902008BCE0004BC1A2 /* Classes */,
-				18739B2F1FEA5F0300D2B160 /* AppDelegate.swift */,
-				18739B311FEA5F0300D2B160 /* ViewController.swift */,
-				18739B331FEA5F0300D2B160 /* Main.storyboard */,
 				18739B361FEA5F0300D2B160 /* Assets.xcassets */,
-				18739B381FEA5F0300D2B160 /* LaunchScreen.storyboard */,
 				18739B3B1FEA5F0300D2B160 /* Info.plist */,
-				1875A9872008A523004BC1A2 /* STVoiceViewController.swift */,
-				1875A9882008A523004BC1A2 /* STVoiceViewController.xib */,
-				1866B1BD200C574000E53715 /* URL+FileManager.swift */,
 			);
 			path = iOS_Audio;
 			sourceTree = "<group>";
@@ -115,10 +110,12 @@
 		1875A9902008BCE0004BC1A2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1819ECCE20109433007FA38C /* Const.swift */,
-				1819ECC720109349007FA38C /* AU */,
+				D787C25820136CE900FC7199 /* Main */,
+				D787C26020137C4700FC7199 /* Category */,
+				D787C26520137D6B00FC7199 /* 列表 */,
 				1875A9912008BCE0004BC1A2 /* 录音 */,
-				1866B1BB200C568400E53715 /* STListsViewController.swift */,
+				D787C26320137CA800FC7199 /* Home */,
+				1819ECC720109349007FA38C /* AU */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -130,6 +127,53 @@
 				D716155C200F8AC500455B56 /* AKRecorder.swift */,
 			);
 			path = "录音";
+			sourceTree = "<group>";
+		};
+		D787C25820136CE900FC7199 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D787C25920136D2900FC7199 /* RootViewController.swift */,
+				D787C26820137D9100FC7199 /* iOS_Audio-Bridging-Header.h */,
+				D787C26920137D9900FC7199 /* AppDelegate.swift */,
+				D787C26A20137D9900FC7199 /* Const.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		D787C26020137C4700FC7199 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				D787C26120137C7400FC7199 /* URL+FileManager.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		D787C26320137CA800FC7199 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D787C26E20137DAD00FC7199 /* STVoiceViewController.swift */,
+				D787C26D20137DAD00FC7199 /* STVoiceViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D787C26420137D3E00FC7199 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				18739B381FEA5F0300D2B160 /* LaunchScreen.storyboard */,
+				18739B311FEA5F0300D2B160 /* ViewController.swift */,
+				18739B331FEA5F0300D2B160 /* Main.storyboard */,
+			);
+			name = Other;
+			path = iOS_Audio/Other;
+			sourceTree = SOURCE_ROOT;
+		};
+		D787C26520137D6B00FC7199 /* 列表 */ = {
+			isa = PBXGroup;
+			children = (
+				D787C26620137D6B00FC7199 /* STListsViewController.swift */,
+			);
+			path = "列表";
 			sourceTree = "<group>";
 		};
 		F97342B4B8FCB23E3AFB6625 /* Frameworks */ = {
@@ -178,6 +222,7 @@
 		18739B241FEA5F0300D2B160 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ST;
 				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = zxl;
@@ -215,7 +260,7 @@
 				18739B3A1FEA5F0300D2B160 /* LaunchScreen.storyboard in Resources */,
 				18739B371FEA5F0300D2B160 /* Assets.xcassets in Resources */,
 				1819ECCD201093A7007FA38C /* AUViewController.xib in Resources */,
-				1875A98A2008A523004BC1A2 /* STVoiceViewController.xib in Resources */,
+				D787C26F20137DAD00FC7199 /* STVoiceViewController.xib in Resources */,
 				18739B351FEA5F0300D2B160 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,17 +328,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1866B1BE200C574000E53715 /* URL+FileManager.swift in Sources */,
 				18739B321FEA5F0300D2B160 /* ViewController.swift in Sources */,
+				D787C26220137C7400FC7199 /* URL+FileManager.swift in Sources */,
+				D787C25A20136D2900FC7199 /* RootViewController.swift in Sources */,
+				D787C26720137D6B00FC7199 /* STListsViewController.swift in Sources */,
 				D716155D200F8AC500455B56 /* AKRecorder.swift in Sources */,
-				1875A9892008A523004BC1A2 /* STVoiceViewController.swift in Sources */,
 				1875A9932008BD34004BC1A2 /* AudioManager.swift in Sources */,
 				1819ECC920109361007FA38C /* AUManager.swift in Sources */,
 				18344125201192CE002FB9E0 /* AURecorder.m in Sources */,
-				18739B301FEA5F0300D2B160 /* AppDelegate.swift in Sources */,
+				D787C26B20137D9900FC7199 /* AppDelegate.swift in Sources */,
 				1819ECCC201093A7007FA38C /* AUViewController.swift in Sources */,
-				1866B1BC200C568400E53715 /* STListsViewController.swift in Sources */,
-				1819ECCF20109433007FA38C /* Const.swift in Sources */,
+				D787C27020137DAD00FC7199 /* STVoiceViewController.swift in Sources */,
+				D787C26C20137D9900FC7199 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +485,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zxl.iOS-Audio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "iOS_Audio/Classes/AU/iOS_Audio-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS_Audio/Classes/Main/iOS_Audio-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -459,7 +505,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zxl.iOS-Audio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "iOS_Audio/Classes/AU/iOS_Audio-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS_Audio/Classes/Main/iOS_Audio-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
