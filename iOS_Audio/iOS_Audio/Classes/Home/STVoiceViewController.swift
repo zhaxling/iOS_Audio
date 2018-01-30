@@ -63,7 +63,7 @@ class STVoiceViewController: UIViewController {
         btn.backgroundColor = UIColor.red
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         btn.addTarget(self, action: #selector(startAction), for: UIControlEvents.touchUpInside)
-        btn.frame = CGRect(x: screenBounds.width * 0.4, y: screenBounds.height - screenBounds.width * 0.2 - 28, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
+        btn.frame = CGRect(x: screenBounds.width * 0.4, y: screenBounds.height - screenBounds.width * 0.2 - kTabBarH, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
         btn.layer.cornerRadius = screenBounds.width * 0.1
         return btn
     }()
@@ -74,7 +74,7 @@ class STVoiceViewController: UIViewController {
         btn.backgroundColor = UIColor.red
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         btn.addTarget(self, action: #selector(endAction), for: UIControlEvents.touchUpInside)
-        btn.frame = CGRect(x: screenBounds.width * 0.7, y: screenBounds.height - screenBounds.width * 0.2 - 28, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
+        btn.frame = CGRect(x: screenBounds.width * 0.7, y: screenBounds.height - screenBounds.width * 0.2 - kTabBarH, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
         btn.layer.cornerRadius = screenBounds.width * 0.1
         return btn
     }()
@@ -85,7 +85,7 @@ class STVoiceViewController: UIViewController {
         btn.backgroundColor = UIColor.red
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         btn.addTarget(self, action: #selector(listAction), for: UIControlEvents.touchUpInside)
-        btn.frame = CGRect(x: screenBounds.width * 0.1, y: screenBounds.height - screenBounds.width * 0.2 - 28, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
+        btn.frame = CGRect(x: screenBounds.width * 0.1, y: screenBounds.height - screenBounds.width * 0.2 - kTabBarH, width: screenBounds.width * 0.2, height: screenBounds.width * 0.2)
         btn.layer.cornerRadius = screenBounds.width * 0.1
         return btn
     }()
@@ -103,16 +103,17 @@ class STVoiceViewController: UIViewController {
             
             let fileManager = FileManager.default
             let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-            let documentDirectory = urls[0] as NSURL
+            let documentDirectory = urls[0] as URL
             let audioPath = documentDirectory.appendingPathComponent("audio", isDirectory: true)
-            let soundURL = audioPath?.appendingPathComponent(recordingName)//将音频文件名称追加在可用路径上形成音频文件的保存路径
+            let soundURL = audioPath.appendingPathComponent(recordingName)//将音频文件名称追加在可用路径上形成音频文件的保存路径
             print(soundURL as Any)
             
+            let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+            let url = URL(fileURLWithPath: path! + "/audio/2018.m4a")
             
-            let isRecording = recorder.start(url: soundURL!, delegate: self)
-            if isRecording {
-                self.type = 1
-            }
+            
+            recorder.start(url: url, delegate: self)
+            self.type = 1
         } else if type == 1 {
             print("暂停录音")
             recorder.pause()

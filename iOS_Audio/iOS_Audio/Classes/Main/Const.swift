@@ -11,16 +11,18 @@ import UIKit
 
 // 当前系统版本
 let kVersion = (UIDevice.current.systemVersion as NSString).floatValue
-// 屏幕宽度
+// 屏幕宽高
 let kScreenHeight = UIScreen.main.bounds.height
-// 屏幕高度
 let kScreenWidth = UIScreen.main.bounds.width
-/// iPhone 5
 let isIPhone5 = kScreenHeight == 568 ? true : false
-/// iPhone 6
 let isIPhone6 = kScreenHeight == 667 ? true : false
-/// iPhone 6P
 let isIPhone6P = kScreenHeight == 736 ? true : false
+let isIPhoneX = kScreenHeight == 812 ? true : false
+
+let kStatuH:CGFloat = 20
+let kNavBarH:CGFloat = isIPhoneX ? 88 : 64
+let kTabBarH:CGFloat = isIPhoneX ? 49 + 34 : 49
+
 
 // MARK:- 颜色方法
 func RGBAColor (_ r:CGFloat, _ g:CGFloat, _ b:CGFloat, a:CGFloat) -> UIColor {

@@ -35,10 +35,11 @@ class RootViewController: UITabBarController {
     
     // 添加子控制器
     func addSubViewController(viewController:UIViewController, title:String, image:String, seletedImage:String) {
-        viewController.title = title
-        viewController.tabBarItem.image = UIImage(named: image)
-        viewController.tabBarItem.selectedImage = UIImage(named: seletedImage)
-        self.addChildViewController(viewController)
+        let navVC = UINavigationController(rootViewController: viewController)
+        navVC.title = title
+        navVC.tabBarItem.image = UIImage(named: image)
+        navVC.tabBarItem.selectedImage = UIImage(named: seletedImage)
+        self.addChildViewController(navVC)
     }
     
     // 设置分栏 颜色

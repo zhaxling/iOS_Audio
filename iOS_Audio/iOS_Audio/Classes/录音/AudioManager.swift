@@ -41,6 +41,10 @@ enum AudioState {
 
 class AudioManager: NSObject {
     
+    deinit {
+        print("录制器销毁了")
+    }
+    
     // 当前状态
     var state:AudioState = .Idle
     static let manager:AudioManager = AudioManager.init()
@@ -49,9 +53,11 @@ class AudioManager: NSObject {
     //MARK: - 录音
     var recorderDelegate:AudioRecorderDelegate?
     var recorderUrl:URL?
+    var recorder: AVAudioRecorder!
     
-    lazy var recorder: AVAudioRecorder? = {
-        
+    
+    /// 初始化录音器
+    func setupRecorder() {
         let settings: [String: Any] = [
             AVFormatIDKey: kAudioFormatAppleLossless,
             AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
@@ -60,20 +66,15 @@ class AudioManager: NSObject {
             AVSampleRateKey: AVSampleRate
         ]
         
-        let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            
-            let recorder = try AVAudioRecorder(url: recorderUrl!, settings: settings)
+            recorder = try AVAudioRecorder(url: recorderUrl!, settings: settings)
             recorder.delegate = self
             recorder.isMeteringEnabled = true
-            recorder.prepareToRecord()
-            return recorder
+            recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
         } catch {
             print("创建录音失败 - \(error.localizedDescription)")
-            return nil
         }
-    }()
+    }
     
     lazy var recorderTimer: Timer = {
         let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(recorderTime), userInfo: nil, repeats: true)
@@ -87,34 +88,23 @@ class AudioManager: NSObject {
         return timer
     }()
     
-    func start(url:URL, delegate:AudioRecorderDelegate) -> Bool {
+    func start(url:URL, delegate:AudioRecorderDelegate) {
         recorderDelegate = delegate
         recorderUrl = url
         
-        if (recorder?.isRecording)! {
-            print("正在录制")
-            return false
+        // 请求权限
+        if recorder == nil {
+            recordWithPermission(true)
         }
-        
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setActive(true)
-            if (recorder?.record())! {
-                recorderTimer.fire()
-                powerTimer.fire()
-                recorderDelegate?.recorderDidStart?()
-                return true
-            }
-        } catch {
-            print("失败 \(error.localizedDescription)")
+        else {
+            recordWithPermission(false)
         }
-        return false
     }
     
     func pause() {
         recorder?.pause()
-        recorderTimer.invalidate()
-        powerTimer.invalidate()
+        recorderTimer.fireDate = Date.distantFuture
+        powerTimer.fireDate = Date.distantFuture
         recorderDelegate?.recorderPause?()
     }
     
@@ -137,6 +127,135 @@ class AudioManager: NSObject {
         recorderDelegate?.recorder?(min: Int((recorder?.currentTime)! / 60), sec: Int((recorder?.currentTime.truncatingRemainder(dividingBy: 60))!))
     }
     
+    
+    /// 请求权限
+    ///
+    /// - Parameter setup: 是否需要初始化录制器
+    func recordWithPermission(_ setup: Bool) {
+        print("\(#function)")
+        
+        AVAudioSession.sharedInstance().requestRecordPermission {
+            [unowned self] granted in
+            if granted {
+                
+                DispatchQueue.main.async {
+                    print("Permission to record granted")
+                    self.setSessionPlayAndRecord()
+                    if setup {
+                        self.setupRecorder()
+                    }
+                    
+                    self.recorder.record()
+                    self.recorderTimer.fire()
+                    self.powerTimer.fire()
+                    self.recorderDelegate?.recorderDidStart?()
+                }
+            } else {
+                print("Permission to record not granted")
+            }
+        }
+        
+        if AVAudioSession.sharedInstance().recordPermission() == .denied {
+            print("permission denied")
+        }
+    }
+    
+    
+    func setSessionPlayback() {
+        print("\(#function)")
+        
+        let session = AVAudioSession.sharedInstance()
+        
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayback, with: .defaultToSpeaker)
+            
+        } catch {
+            print("could not set session category")
+            print(error.localizedDescription)
+        }
+        
+        do {
+            try session.setActive(true)
+        } catch {
+            print("could not make session active")
+            print(error.localizedDescription)
+        }
+    }
+    
+    func setSessionPlayAndRecord() {
+        print("\(#function)")
+        
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
+        } catch {
+            print("could not set session category")
+            print(error.localizedDescription)
+        }
+        
+        do {
+            try session.setActive(true)
+        } catch {
+            print("could not make session active")
+            print(error.localizedDescription)
+        }
+    }
+    
+    func deleteAllRecordings() {
+        print("\(#function)")
+        
+        
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        let fileManager = FileManager.default
+        do {
+            let files = try fileManager.contentsOfDirectory(at: documentsDirectory,
+                                                            includingPropertiesForKeys: nil,
+                                                            options: .skipsHiddenFiles)
+            //                let files = try fileManager.contentsOfDirectory(at: documentsDirectory)
+            var recordings = files.filter({ (name: URL) -> Bool in
+                return name.pathExtension == "m4a"
+                //                    return name.hasSuffix("m4a")
+            })
+            for i in 0 ..< recordings.count {
+                //                    let path = documentsDirectory.appendPathComponent(recordings[i], inDirectory: true)
+                //                    let path = docsDir + "/" + recordings[i]
+                
+                //                    print("removing \(path)")
+                print("removing \(recordings[i])")
+                do {
+                    try fileManager.removeItem(at: recordings[i])
+                } catch {
+                    print("could not remove \(recordings[i])")
+                    print(error.localizedDescription)
+                }
+            }
+            
+        } catch {
+            print("could not get contents of directory at \(documentsDirectory)")
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    func askForNotifications() {
+        print("\(#function)")
+        
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(RecorderViewController.background(_:)),
+//                                               name: NSNotification.Name.UIApplicationWillResignActive,
+//                                               object: nil)
+//
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(RecorderViewController.foreground(_:)),
+//                                               name: NSNotification.Name.UIApplicationWillEnterForeground,
+//                                               object: nil)
+//
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(RecorderViewController.routeChange(_:)),
+//                                               name: NSNotification.Name.AVAudioSessionRouteChange,
+//                                               object: nil)
+    }
 }
 
 
