@@ -13,10 +13,11 @@ import UIKit
 class STVoiceViewController: UIViewController {
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,29 +94,9 @@ class STVoiceViewController: UIViewController {
     @objc func startAction() {
         print("\(#function)")
         if type == 0 {
-            print("开始录音")
-            
-            //根据时间设置存储文件名
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "ddMMyyyyHHmmss"
-            let recordingName = formatter.string(from: currentDateTime)+".m4a"
-            
-            let fileManager = FileManager.default
-            let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-            let documentDirectory = urls[0] as URL
-            let audioPath = documentDirectory.appendingPathComponent("audio", isDirectory: true)
-            let soundURL = audioPath.appendingPathComponent(recordingName)//将音频文件名称追加在可用路径上形成音频文件的保存路径
-            print(soundURL as Any)
-            
-            let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
-            let url = URL(fileURLWithPath: path! + "/audio/2018.m4a")
-            
-            
+            let url = URL.getM4ATimePath()
             recorder.start(url: url, delegate: self)
-            self.type = 1
         } else if type == 1 {
-            print("暂停录音")
             recorder.pause()
         }
     }
@@ -133,9 +114,11 @@ class STVoiceViewController: UIViewController {
 extension STVoiceViewController : AudioRecorderDelegate{
     func recorderDidStart() {
         print("录制开始")
+        self.type = 1
     }
     func recorderPause() {
         print("录制暂停")
+        self.type = 0
     }
     func recorder(currentTime: TimeInterval) {
         //print("录制时间 \(currentTime)")
@@ -146,5 +129,6 @@ extension STVoiceViewController : AudioRecorderDelegate{
     }
     func recorderDidFinish() {
         print("录制完成")
+        self.type = 0
     }
 }

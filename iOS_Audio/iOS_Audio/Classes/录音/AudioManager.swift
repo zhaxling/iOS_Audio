@@ -9,14 +9,6 @@
 import UIKit
 import AVFoundation
 
-let AVSampleRate = 44100.0 // 采样率
-let AVChannels = 1 // 采样通道
-let AVLinearPCMBitDepth = 16 // 采样位数 默认16
-
-// 定时器返回时间频率
-let AVTimerRate = 0.1 / 1
-
-
 @objc protocol AudioRecorderDelegate {
     
     /** 开始录音 */
@@ -39,6 +31,13 @@ enum AudioState {
     case Playing
 }
 
+let AVSampleRate = 44100.0 // 采样率
+let AVChannels = 1 // 采样通道
+let AVLinearPCMBitDepth = 16 // 采样位数 默认16
+
+// 定时器返回时间频率
+let AVTimerRate = 0.1 / 1
+
 class AudioManager: NSObject {
     
     deinit {
@@ -53,7 +52,7 @@ class AudioManager: NSObject {
     //MARK: - 录音
     var recorderDelegate:AudioRecorderDelegate?
     var recorderUrl:URL?
-    var recorder: AVAudioRecorder!
+    var recorder: AVAudioRecorder?
     
     
     /// 初始化录音器
@@ -68,26 +67,26 @@ class AudioManager: NSObject {
         
         do {
             recorder = try AVAudioRecorder(url: recorderUrl!, settings: settings)
-            recorder.delegate = self
-            recorder.isMeteringEnabled = true
-            recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
+            recorder?.delegate = self
+            recorder?.isMeteringEnabled = true
+            recorder?.prepareToRecord() // creates/overwrites the file at soundFileURL
         } catch {
             print("创建录音失败 - \(error.localizedDescription)")
         }
     }
     
-    lazy var recorderTimer: Timer = {
-        let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(recorderTime), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer, forMode: .commonModes)
-        return timer
-    }()
-    
-    lazy var powerTimer: Timer = {
-        let timer = Timer(timeInterval: 1, target: self, selector: #selector(power), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer, forMode: .commonModes)
-        return timer
-    }()
-    
+    var recorderTimer: Timer?
+    var powerTimer: Timer?
+    func setTimer() {
+        let recorderTimer = Timer(timeInterval: 1, target: self, selector: #selector(recorderTime), userInfo: nil, repeats: true)
+        RunLoop.main.add(recorderTimer, forMode: .commonModes)
+        self.recorderTimer = recorderTimer
+        
+        let powerTimer = Timer(timeInterval: 1, target: self, selector: #selector(power), userInfo: nil, repeats: true)
+        RunLoop.main.add(powerTimer, forMode: .commonModes)
+        self.powerTimer = powerTimer
+    }
+  
     func start(url:URL, delegate:AudioRecorderDelegate) {
         recorderDelegate = delegate
         recorderUrl = url
@@ -103,16 +102,14 @@ class AudioManager: NSObject {
     
     func pause() {
         recorder?.pause()
-        recorderTimer.fireDate = Date.distantFuture
-        powerTimer.fireDate = Date.distantFuture
+        recorderTimer?.fireDate = Date.distantFuture
+        powerTimer?.fireDate = Date.distantFuture
         recorderDelegate?.recorderPause?()
     }
     
     func finish() {
         recorder?.stop()
-        recorderTimer.invalidate()
-        powerTimer.invalidate()
-        recorderDelegate?.recorderDidFinish?()
+        setSessionDefault()// 充值会话
     }
     
     // 定时器
@@ -122,9 +119,7 @@ class AudioManager: NSObject {
         recorderDelegate?.recorder?(min: Int((recorder?.currentTime)! / 60), sec: Int((recorder?.currentTime.truncatingRemainder(dividingBy: 60))!))
     }
     @objc func power()  {
-        recorderDelegate?.recorder?(currentTime: (recorder?.currentTime)!)
-        // 代理返回时间 分 秒
-        recorderDelegate?.recorder?(min: Int((recorder?.currentTime)! / 60), sec: Int((recorder?.currentTime.truncatingRemainder(dividingBy: 60))!))
+        
     }
     
     
@@ -145,10 +140,12 @@ class AudioManager: NSObject {
                         self.setupRecorder()
                     }
                     
-                    self.recorder.record()
-                    self.recorderTimer.fire()
-                    self.powerTimer.fire()
-                    self.recorderDelegate?.recorderDidStart?()
+                    if (self.recorder?.record())! {
+                        self.setTimer()
+                        self.recorderTimer?.fire()
+                        self.powerTimer?.fire()
+                        self.recorderDelegate?.recorderDidStart?()
+                    }
                 }
             } else {
                 print("Permission to record not granted")
@@ -201,68 +198,29 @@ class AudioManager: NSObject {
         }
     }
     
-    func deleteAllRecordings() {
-        print("\(#function)")
-        
-        
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        
-        let fileManager = FileManager.default
+    func setSessionDefault() {
+        let session = AVAudioSession.sharedInstance()
         do {
-            let files = try fileManager.contentsOfDirectory(at: documentsDirectory,
-                                                            includingPropertiesForKeys: nil,
-                                                            options: .skipsHiddenFiles)
-            //                let files = try fileManager.contentsOfDirectory(at: documentsDirectory)
-            var recordings = files.filter({ (name: URL) -> Bool in
-                return name.pathExtension == "m4a"
-                //                    return name.hasSuffix("m4a")
-            })
-            for i in 0 ..< recordings.count {
-                //                    let path = documentsDirectory.appendPathComponent(recordings[i], inDirectory: true)
-                //                    let path = docsDir + "/" + recordings[i]
-                
-                //                    print("removing \(path)")
-                print("removing \(recordings[i])")
-                do {
-                    try fileManager.removeItem(at: recordings[i])
-                } catch {
-                    print("could not remove \(recordings[i])")
-                    print(error.localizedDescription)
-                }
-            }
-            
+            try session.setCategory(AVAudioSessionCategoryRecord)
         } catch {
-            print("could not get contents of directory at \(documentsDirectory)")
-            print(error.localizedDescription)
+            print("录音器会话设置错误")
         }
-        
-    }
-    
-    func askForNotifications() {
-        print("\(#function)")
-        
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(RecorderViewController.background(_:)),
-//                                               name: NSNotification.Name.UIApplicationWillResignActive,
-//                                               object: nil)
-//
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(RecorderViewController.foreground(_:)),
-//                                               name: NSNotification.Name.UIApplicationWillEnterForeground,
-//                                               object: nil)
-//
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(RecorderViewController.routeChange(_:)),
-//                                               name: NSNotification.Name.AVAudioSessionRouteChange,
-//                                               object: nil)
+        do {
+            try session.setActive(false)
+        } catch {
+            print("录音器会话设置错误")
+        }
     }
 }
 
 
 extension AudioManager : AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        
-        recorderTimer.invalidate()
+        recorderTimer?.invalidate()
+        powerTimer?.invalidate()
+        recorderTimer = nil
+        powerTimer = nil
+        self.recorder = nil
         recorderDelegate?.recorderDidFinish?()
         print("录制完成 \(flag)")
     }

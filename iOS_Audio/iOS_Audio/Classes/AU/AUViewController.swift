@@ -54,7 +54,6 @@ class AUViewController: UIViewController {
          */
         
         
-        
     }
 
     override func didReceiveMemoryWarning() {
