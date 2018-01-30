@@ -12,6 +12,8 @@
 		1819ECCC201093A7007FA38C /* AUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819ECCA201093A7007FA38C /* AUViewController.swift */; };
 		1819ECCD201093A7007FA38C /* AUViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1819ECCB201093A7007FA38C /* AUViewController.xib */; };
 		18344125201192CE002FB9E0 /* AURecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18344124201192CE002FB9E0 /* AURecorder.m */; };
+		1870797D2016E2C8000B94E2 /* SystemSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 1870797C2016E2C8000B94E2 /* SystemSound.m */; };
+		1870797F2016E2F2000B94E2 /* sound_recorder_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1870797E2016E2F2000B94E2 /* sound_recorder_click.wav */; };
 		18739B321FEA5F0300D2B160 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18739B311FEA5F0300D2B160 /* ViewController.swift */; };
 		18739B351FEA5F0300D2B160 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18739B331FEA5F0300D2B160 /* Main.storyboard */; };
 		18739B371FEA5F0300D2B160 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18739B361FEA5F0300D2B160 /* Assets.xcassets */; };
@@ -35,6 +37,9 @@
 		1819ECCB201093A7007FA38C /* AUViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AUViewController.xib; sourceTree = "<group>"; };
 		18344123201192CE002FB9E0 /* AURecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AURecorder.h; sourceTree = "<group>"; };
 		18344124201192CE002FB9E0 /* AURecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AURecorder.m; sourceTree = "<group>"; };
+		1870797B2016E2C8000B94E2 /* SystemSound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSound.h; sourceTree = "<group>"; };
+		1870797C2016E2C8000B94E2 /* SystemSound.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSound.m; sourceTree = "<group>"; };
+		1870797E2016E2F2000B94E2 /* sound_recorder_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_recorder_click.wav; sourceTree = "<group>"; };
 		18739B2C1FEA5F0300D2B160 /* iOS_Audio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Audio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18739B311FEA5F0300D2B160 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		18739B341FEA5F0300D2B160 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,6 +83,23 @@
 			path = AU;
 			sourceTree = "<group>";
 		};
+		187079792016E273000B94E2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1870797A2016E28E000B94E2 /* 音频 */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		1870797A2016E28E000B94E2 /* 音频 */ = {
+			isa = PBXGroup;
+			children = (
+				1870797B2016E2C8000B94E2 /* SystemSound.h */,
+				1870797C2016E2C8000B94E2 /* SystemSound.m */,
+			);
+			path = "音频";
+			sourceTree = "<group>";
+		};
 		18739B231FEA5F0300D2B160 = {
 			isa = PBXGroup;
 			children = (
@@ -110,12 +132,13 @@
 		1875A9902008BCE0004BC1A2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				187079792016E273000B94E2 /* Utils */,
 				D787C25820136CE900FC7199 /* Main */,
 				D787C26020137C4700FC7199 /* Category */,
 				D787C26520137D6B00FC7199 /* 列表 */,
+				1819ECC720109349007FA38C /* AU */,
 				1875A9912008BCE0004BC1A2 /* 录音 */,
 				D787C26320137CA800FC7199 /* Home */,
-				1819ECC720109349007FA38C /* AU */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -160,6 +183,7 @@
 		D787C26420137D3E00FC7199 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				1870797E2016E2F2000B94E2 /* sound_recorder_click.wav */,
 				18739B381FEA5F0300D2B160 /* LaunchScreen.storyboard */,
 				18739B311FEA5F0300D2B160 /* ViewController.swift */,
 				18739B331FEA5F0300D2B160 /* Main.storyboard */,
@@ -260,6 +284,7 @@
 				18739B3A1FEA5F0300D2B160 /* LaunchScreen.storyboard in Resources */,
 				18739B371FEA5F0300D2B160 /* Assets.xcassets in Resources */,
 				1819ECCD201093A7007FA38C /* AUViewController.xib in Resources */,
+				1870797F2016E2F2000B94E2 /* sound_recorder_click.wav in Resources */,
 				D787C26F20137DAD00FC7199 /* STVoiceViewController.xib in Resources */,
 				18739B351FEA5F0300D2B160 /* Main.storyboard in Resources */,
 			);
@@ -328,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1870797D2016E2C8000B94E2 /* SystemSound.m in Sources */,
 				18739B321FEA5F0300D2B160 /* ViewController.swift in Sources */,
 				D787C26220137C7400FC7199 /* URL+FileManager.swift in Sources */,
 				D787C25A20136D2900FC7199 /* RootViewController.swift in Sources */,
@@ -479,7 +505,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S4HH4QULF9;
+				DEVELOPMENT_TEAM = 5836W9K38T;
 				INFOPLIST_FILE = iOS_Audio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -499,7 +525,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S4HH4QULF9;
+				DEVELOPMENT_TEAM = 5836W9K38T;
 				INFOPLIST_FILE = iOS_Audio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

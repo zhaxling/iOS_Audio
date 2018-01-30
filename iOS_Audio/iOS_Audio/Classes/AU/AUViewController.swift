@@ -13,6 +13,9 @@ class AUViewController: UIViewController {
     @IBOutlet weak var recorderButton: UIButton!
     let recorder:AURecorder = AURecorder()
     
+    let systemSoundPlay = SystemSound()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,7 +63,10 @@ class AUViewController: UIViewController {
     }
     
     @IBAction func recorderButtonClick(_ sender: Any) {
-        recorder.start()
+        systemSoundPlay.play("") {
+            print("播放完成")
+        }
+        //recorder.start()
     }
     @IBAction func stopButtonClick(_ sender: Any) {
         recorder.stop()
