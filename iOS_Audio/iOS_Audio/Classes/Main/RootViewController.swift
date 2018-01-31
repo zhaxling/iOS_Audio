@@ -17,6 +17,7 @@ class RootViewController: UITabBarController {
         super.viewDidLoad()
         
         self.configUI()
+        self.config()
         
         // Recorder - ST
         self.addSubViewController(viewController: STVoiceViewController(), title: "录音", image: "tabbar_mainframe", seletedImage: "tabbar_mainframeHL")
@@ -35,7 +36,7 @@ class RootViewController: UITabBarController {
     
     // 添加子控制器
     func addSubViewController(viewController:UIViewController, title:String, image:String, seletedImage:String) {
-        let navVC = UINavigationController(rootViewController: viewController)
+        let navVC = BaseNavigationController(rootViewController: viewController)
         navVC.title = title
         navVC.tabBarItem.image = UIImage(named: image)
         navVC.tabBarItem.selectedImage = UIImage(named: seletedImage)
@@ -48,6 +49,12 @@ class RootViewController: UITabBarController {
         let selectedAttribute = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),NSAttributedStringKey.foregroundColor:UIColor.blue]
         UITabBarItem.appearance().setTitleTextAttributes(normalAttribute, for: UIControlState.normal)
         UITabBarItem.appearance().setTitleTextAttributes(selectedAttribute, for: UIControlState.selected)
+    }
+    
+    
+    /// 设置
+    func config() {
+        
     }
     
     // 点击选中按钮发送通知

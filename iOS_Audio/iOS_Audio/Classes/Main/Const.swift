@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+///--------------------------------------------------
+/// SCREEN VERSION
+///--------------------------------------------------
 // 当前系统版本
 let kVersion = (UIDevice.current.systemVersion as NSString).floatValue
 // 屏幕宽高
@@ -23,7 +26,18 @@ let kStatuH:CGFloat = 20
 let kNavBarH:CGFloat = isIPhoneX ? 88 : 64
 let kTabBarH:CGFloat = isIPhoneX ? 49 + 34 : 49
 
+func WIDTH(_ size:Float) -> CGFloat
+{
+    return CGFloat(size / 375.0 * Float(UIScreen.main.bounds.size.width))
+}
+func HEIGHT(_ size:Float) -> CGFloat
+{
+    return CGFloat(size / 667.0 * Float(UIScreen.main.bounds.size.height))
+}
 
+///--------------------------------------------------
+/// COLORS
+///--------------------------------------------------
 // MARK:- 颜色方法
 func RGBAColor (_ r:CGFloat, _ g:CGFloat, _ b:CGFloat, a:CGFloat) -> UIColor {
     return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a)
@@ -41,16 +55,14 @@ func randomColor() -> UIColor {
 func kGlobalColor() -> UIColor {
     return RGBAColor(255, 255, 255, a: 1)
 }
-
-func WIDTH(_ size:Float) -> CGFloat
-{
-    return CGFloat(size / 375.0 * Float(UIScreen.main.bounds.size.width))
-}
-func HEIGHT(_ size:Float) -> CGFloat
-{
-    return CGFloat(size / 667.0 * Float(UIScreen.main.bounds.size.height))
+// MARK:- 全局背景颜色
+func kBackGroundColor() -> UIColor {
+    return RGBAColor(235, 235, 235, a: 1)
 }
 
+///--------------------------------------------------
+/// LOG
+///--------------------------------------------------
 func customLog<T>(_ message: T, fileName: String = #file, methodName: String =  #function, lineNumber: Int = #line)
 {
     #if DEBUG

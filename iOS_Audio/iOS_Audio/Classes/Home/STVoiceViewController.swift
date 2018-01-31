@@ -13,6 +13,7 @@ import UIKit
 class STVoiceViewController: UIViewController {
     
     
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +95,7 @@ class STVoiceViewController: UIViewController {
     @objc func startAction() {
         print("\(#function)")
         if type == 0 {
-            let url = URL.getM4ATimePath()
+            let url = URL.getAudioTimePath()
             recorder.start(url: url, delegate: self)
         } else if type == 1 {
             recorder.pause()
@@ -125,6 +126,7 @@ extension STVoiceViewController : AudioRecorderDelegate{
     }
     func recorder(min: Int, sec: Int) {
         let s = String(format: "%02d:%02d", min, sec)
+        self.timeLabel.text = s
         print("录制时间 \(s)")
     }
     func recorderDidFinish() {

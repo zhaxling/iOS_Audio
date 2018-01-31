@@ -14,6 +14,10 @@
 		18344125201192CE002FB9E0 /* AURecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18344124201192CE002FB9E0 /* AURecorder.m */; };
 		1870797D2016E2C8000B94E2 /* SystemSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 1870797C2016E2C8000B94E2 /* SystemSound.m */; };
 		1870797F2016E2F2000B94E2 /* sound_recorder_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1870797E2016E2F2000B94E2 /* sound_recorder_click.wav */; };
+		1871A11C20219F8100C12125 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871A11A20219F8100C12125 /* AudioPlayerViewController.swift */; };
+		1871A11D20219F8100C12125 /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1871A11B20219F8100C12125 /* AudioPlayerViewController.xib */; };
+		1871A11F2021A74F00C12125 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871A11E2021A74F00C12125 /* BaseNavigationController.swift */; };
+		1871A1212021A82000C12125 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871A1202021A82000C12125 /* BaseViewController.swift */; };
 		18739B321FEA5F0300D2B160 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18739B311FEA5F0300D2B160 /* ViewController.swift */; };
 		18739B351FEA5F0300D2B160 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18739B331FEA5F0300D2B160 /* Main.storyboard */; };
 		18739B371FEA5F0300D2B160 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18739B361FEA5F0300D2B160 /* Assets.xcassets */; };
@@ -40,6 +44,10 @@
 		1870797B2016E2C8000B94E2 /* SystemSound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSound.h; sourceTree = "<group>"; };
 		1870797C2016E2C8000B94E2 /* SystemSound.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSound.m; sourceTree = "<group>"; };
 		1870797E2016E2F2000B94E2 /* sound_recorder_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_recorder_click.wav; sourceTree = "<group>"; };
+		1871A11A20219F8100C12125 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
+		1871A11B20219F8100C12125 /* AudioPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioPlayerViewController.xib; sourceTree = "<group>"; };
+		1871A11E2021A74F00C12125 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		1871A1202021A82000C12125 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		18739B2C1FEA5F0300D2B160 /* iOS_Audio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Audio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18739B311FEA5F0300D2B160 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		18739B341FEA5F0300D2B160 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,6 +108,15 @@
 			path = "音频";
 			sourceTree = "<group>";
 		};
+		1871A11420219E5900C12125 /* 播放 */ = {
+			isa = PBXGroup;
+			children = (
+				1871A11A20219F8100C12125 /* AudioPlayerViewController.swift */,
+				1871A11B20219F8100C12125 /* AudioPlayerViewController.xib */,
+			);
+			path = "播放";
+			sourceTree = "<group>";
+		};
 		18739B231FEA5F0300D2B160 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +154,7 @@
 				D787C26020137C4700FC7199 /* Category */,
 				D787C26520137D6B00FC7199 /* 列表 */,
 				1819ECC720109349007FA38C /* AU */,
+				1871A11420219E5900C12125 /* 播放 */,
 				1875A9912008BCE0004BC1A2 /* 录音 */,
 				D787C26320137CA800FC7199 /* Home */,
 			);
@@ -159,6 +177,8 @@
 				D787C26820137D9100FC7199 /* iOS_Audio-Bridging-Header.h */,
 				D787C26920137D9900FC7199 /* AppDelegate.swift */,
 				D787C26A20137D9900FC7199 /* Const.swift */,
+				1871A11E2021A74F00C12125 /* BaseNavigationController.swift */,
+				1871A1202021A82000C12125 /* BaseViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -283,6 +303,7 @@
 			files = (
 				18739B3A1FEA5F0300D2B160 /* LaunchScreen.storyboard in Resources */,
 				18739B371FEA5F0300D2B160 /* Assets.xcassets in Resources */,
+				1871A11D20219F8100C12125 /* AudioPlayerViewController.xib in Resources */,
 				1819ECCD201093A7007FA38C /* AUViewController.xib in Resources */,
 				1870797F2016E2F2000B94E2 /* sound_recorder_click.wav in Resources */,
 				D787C26F20137DAD00FC7199 /* STVoiceViewController.xib in Resources */,
@@ -353,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1871A11C20219F8100C12125 /* AudioPlayerViewController.swift in Sources */,
 				1870797D2016E2C8000B94E2 /* SystemSound.m in Sources */,
 				18739B321FEA5F0300D2B160 /* ViewController.swift in Sources */,
 				D787C26220137C7400FC7199 /* URL+FileManager.swift in Sources */,
@@ -360,10 +382,12 @@
 				D787C26720137D6B00FC7199 /* STListsViewController.swift in Sources */,
 				D716155D200F8AC500455B56 /* AKRecorder.swift in Sources */,
 				1875A9932008BD34004BC1A2 /* AudioManager.swift in Sources */,
+				1871A11F2021A74F00C12125 /* BaseNavigationController.swift in Sources */,
 				1819ECC920109361007FA38C /* AUManager.swift in Sources */,
 				18344125201192CE002FB9E0 /* AURecorder.m in Sources */,
 				D787C26B20137D9900FC7199 /* AppDelegate.swift in Sources */,
 				1819ECCC201093A7007FA38C /* AUViewController.swift in Sources */,
+				1871A1212021A82000C12125 /* BaseViewController.swift in Sources */,
 				D787C27020137DAD00FC7199 /* STVoiceViewController.swift in Sources */,
 				D787C26C20137D9900FC7199 /* Const.swift in Sources */,
 			);

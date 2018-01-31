@@ -24,6 +24,20 @@ import AVFoundation
     
 }
 
+@objc protocol AudioPlayerDelegate : NSObjectProtocol {
+    /** 开始播放 */
+    @available(iOS 9.0, *)
+    @objc optional func playerDidStart()
+    /** 当前播放时间 */
+    @objc optional func player(currentTime:TimeInterval)
+    /** 当前播放时间 分 秒 */
+    @objc optional func player(min:Int ,sec:Int)
+    /** 暂停播放 */
+    @objc optional func playerPause()
+    /** 结束播放 */
+    @objc optional func playerDidFinish()
+}
+
 // 闲时 录音 播放
 enum AudioState {
     case Idle
@@ -48,7 +62,6 @@ class AudioManager: NSObject {
     var state:AudioState = .Idle
     static let manager:AudioManager = AudioManager.init()
     
-    
     //MARK: - 录音
     var recorderDelegate:AudioRecorderDelegate?
     var recorderUrl:URL?
@@ -57,6 +70,8 @@ class AudioManager: NSObject {
     
     /// 初始化录音器
     func setupRecorder() {
+        state = .Recording
+        
         let settings: [String: Any] = [
             AVFormatIDKey: kAudioFormatAppleLossless,
             AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
@@ -87,6 +102,11 @@ class AudioManager: NSObject {
         self.powerTimer = powerTimer
     }
   
+    /// 开始录制
+    ///
+    /// - Parameters:
+    ///   - url: 录制文件保存路径
+    ///   - delegate: 代理
     func start(url:URL, delegate:AudioRecorderDelegate) {
         recorderDelegate = delegate
         recorderUrl = url
@@ -100,6 +120,7 @@ class AudioManager: NSObject {
         }
     }
     
+    /// 暂停录制
     func pause() {
         recorder?.pause()
         recorderTimer?.fireDate = Date.distantFuture
@@ -107,9 +128,9 @@ class AudioManager: NSObject {
         recorderDelegate?.recorderPause?()
     }
     
+    /// 结束录制
     func finish() {
         recorder?.stop()
-        setSessionDefault()// 充值会话
     }
     
     // 定时器
@@ -119,7 +140,10 @@ class AudioManager: NSObject {
         recorderDelegate?.recorder?(min: Int((recorder?.currentTime)! / 60), sec: Int((recorder?.currentTime.truncatingRemainder(dividingBy: 60))!))
     }
     @objc func power()  {
-        
+        recorder?.updateMeters()// -160 -
+        let peakPower = recorder?.peakPower(forChannel: 0)
+        let averagePower = recorder?.averagePower(forChannel: 0)
+        print("录音强度 \(String(format: "%.6f", peakPower!)) \(String(format: "%.6f", averagePower!))")
     }
     
     
@@ -127,8 +151,6 @@ class AudioManager: NSObject {
     ///
     /// - Parameter setup: 是否需要初始化录制器
     func recordWithPermission(_ setup: Bool) {
-        print("\(#function)")
-        
         AVAudioSession.sharedInstance().requestRecordPermission {
             [unowned self] granted in
             if granted {
@@ -138,13 +160,20 @@ class AudioManager: NSObject {
                     self.setSessionPlayAndRecord()
                     if setup {
                         self.setupRecorder()
-                    }
-                    
-                    if (self.recorder?.record())! {
-                        self.setTimer()
-                        self.recorderTimer?.fire()
-                        self.powerTimer?.fire()
-                        self.recorderDelegate?.recorderDidStart?()
+                        // 开始录制
+                        if (self.recorder?.record())! {
+                            self.setTimer()
+                            self.recorderTimer?.fire()
+                            self.powerTimer?.fire()
+                            self.recorderDelegate?.recorderDidStart?()
+                        }
+                    }else{
+                        // 恢复录制
+                        if (self.recorder?.record())! {
+                            self.recorderTimer?.fireDate = Date.distantPast
+                            self.powerTimer?.fireDate = Date.distantPast
+                            self.recorderDelegate?.recorderDidStart?()
+                        }
                     }
                 }
             } else {
@@ -159,8 +188,6 @@ class AudioManager: NSObject {
     
     
     func setSessionPlayback() {
-        print("\(#function)")
-        
         let session = AVAudioSession.sharedInstance()
         
         do {
@@ -180,8 +207,6 @@ class AudioManager: NSObject {
     }
     
     func setSessionPlayAndRecord() {
-        print("\(#function)")
-        
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
@@ -211,6 +236,142 @@ class AudioManager: NSObject {
             print("录音器会话设置错误")
         }
     }
+    
+    //MARK: - 播放
+    var player:AVAudioPlayer?
+    var playerDelegate:AudioPlayerDelegate?
+    var playerTimer: Timer?
+    func setPlayerTimer() {
+        let playerTimer = Timer(timeInterval: 1, target: self, selector: #selector(playerTime), userInfo: nil, repeats: true)
+        RunLoop.main.add(playerTimer, forMode: .commonModes)
+        self.playerTimer = playerTimer
+    }
+    
+    /// 播放
+    ///
+    /// - Parameters:
+    ///   - url: url
+    ///   - delegate: 代理
+    func play(url: URL,delegate:AudioPlayerDelegate) {
+        if self.player != nil {
+            player?.play()
+            playerTimer?.fireDate = Date.distantPast
+            playerDelegate?.playerDidStart?()
+            return;
+        }
+        playerDelegate = delegate
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.delegate = self
+            player?.prepareToPlay()
+            player?.volume = 1.0
+            if (player?.play())! {
+                setPlayerTimer()
+                state = .Playing
+                playerDelegate?.playerDidStart?()
+            }
+        } catch {
+            player = nil
+            print(error.localizedDescription)
+        }
+    }
+    
+    /// 暂停
+    func pausePlay() {
+        player?.pause()
+        playerTimer?.fireDate = Date.distantFuture
+        playerDelegate?.playerPause?()
+    }
+    
+    /// 结束播放
+    func stop() {
+        player?.stop()
+        playerTimer?.invalidate()
+        playerTimer = nil
+        self.player = nil
+        self.playerDelegate = nil
+        state = .Idle
+        playerDelegate?.playerDidFinish?()
+    }
+    
+    @objc func playerTime() {
+        playerDelegate?.player?(currentTime: (player?.currentTime)!)
+        // 代理返回时间 分 秒
+        playerDelegate?.player?(min: Int((player?.currentTime)! / 60), sec: Int((player?.currentTime.truncatingRemainder(dividingBy: 60))!))
+    }
+    
+    //MARK: - 通知
+    func notifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillResignActive(_:)),
+                                               name: Notification.Name.UIApplicationWillResignActive,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillEnterForeground(_:)),
+                                               name: Notification.Name.UIApplicationWillEnterForeground,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(audioSessionRouteChange(_:)),
+                                               name: Notification.Name.AVAudioSessionRouteChange,
+                                               object: nil)
+    }
+    
+    @objc func applicationWillResignActive(_ notification: Notification) {
+        print("\(#function)")
+    }
+    
+    @objc func applicationWillEnterForeground(_ notification: Notification) {
+        print("\(#function)")
+    }
+    
+    
+    @objc func audioSessionRouteChange(_ notification: Notification) {
+        
+        if let userInfo = notification.userInfo {
+            if let reason = userInfo[AVAudioSessionRouteChangeReasonKey] {
+                switch AVAudioSessionRouteChangeReason(rawValue: reason as! UInt)! {
+                case AVAudioSessionRouteChangeReason.newDeviceAvailable:
+                    print("NewDeviceAvailable")
+                    print("did you plug in headphones?")
+                    checkHeadphones()
+                case AVAudioSessionRouteChangeReason.oldDeviceUnavailable:
+                    print("OldDeviceUnavailable")
+                    print("did you unplug headphones?")
+                    checkHeadphones()
+                case AVAudioSessionRouteChangeReason.categoryChange:
+                    print("CategoryChange")
+                case AVAudioSessionRouteChangeReason.override:
+                    print("Override")
+                case AVAudioSessionRouteChangeReason.wakeFromSleep:
+                    print("WakeFromSleep")
+                case AVAudioSessionRouteChangeReason.unknown:
+                    print("Unknown")
+                case AVAudioSessionRouteChangeReason.noSuitableRouteForCategory:
+                    print("NoSuitableRouteForCategory")
+                case AVAudioSessionRouteChangeReason.routeConfigurationChange:
+                    print("RouteConfigurationChange")
+                    
+                }
+            }
+        }
+    }
+    
+    func checkHeadphones() {
+        // check NewDeviceAvailable and OldDeviceUnavailable for them being plugged in/unplugged
+        let currentRoute = AVAudioSession.sharedInstance().currentRoute
+        if !currentRoute.outputs.isEmpty {
+            for description in currentRoute.outputs {
+                if description.portType == AVAudioSessionPortHeadphones {
+                    print("headphones are plugged in")
+                    break
+                } else {
+                    print("headphones are unplugged")
+                }
+            }
+        } else {
+            print("checking headphones requires a connection to a device")
+        }
+    }
 }
 
 
@@ -221,10 +382,28 @@ extension AudioManager : AVAudioRecorderDelegate {
         recorderTimer = nil
         powerTimer = nil
         self.recorder = nil
+        self.recorderDelegate = nil
+        state = .Idle
+        setSessionDefault()// 重置会话
         recorderDelegate?.recorderDidFinish?()
         print("录制完成 \(flag)")
     }
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
+        print("编码错误 \(String(describing: error?.localizedDescription))")
+    }
+}
+
+extension AudioManager : AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        
+        playerTimer?.invalidate()
+        playerTimer = nil
+        self.player = nil
+        self.playerDelegate = nil
+        state = .Idle
+        playerDelegate?.playerDidFinish?()
+    }
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         print("编码错误 \(String(describing: error?.localizedDescription))")
     }
 }
