@@ -60,7 +60,6 @@ static SystemSound * selfClass = nil;
         AudioServicesPlaySystemSound(soundID);
     }
     
-    
     // 播放音效
     // 带有震动
     // AudioServicesPlayAlertSound(_soundID);
@@ -73,6 +72,12 @@ void soundCompleteCallBack(SystemSoundID soundID, void * clientDate) {
     if (selfClass.completionHander) {
         selfClass.completionHander();
     }
+}
+
++ (void)playSystemTipAudioIsBegin:(BOOL)isBegin
+{
+    SystemSoundID soundID = isBegin ? 1117 : 1118;
+    AudioServicesPlaySystemSound(soundID);
 }
 
 

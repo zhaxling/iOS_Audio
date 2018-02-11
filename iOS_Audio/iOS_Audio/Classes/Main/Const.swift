@@ -14,6 +14,15 @@ import UIKit
 ///--------------------------------------------------
 // 当前系统版本
 let kVersion = (UIDevice.current.systemVersion as NSString).floatValue
+func IOS_VERSION_9_OR_LATER(_ v:String) -> Bool {
+    return (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_9_0)
+}
+func IOS_VERSION_10_OR_LATER(_ v:String) -> Bool {
+    return (NSFoundationVersionNumber >= NSFoundationVersionNumber10_0)
+}
+func SYSTEM_VERSION_AtLeast(_ majorV:Int,_ minorV:Int) -> Bool {
+    return ProcessInfo.processInfo.isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion: majorV, minorVersion: minorV, patchVersion: 0))
+}
 // 屏幕宽高
 let kScreenHeight = UIScreen.main.bounds.height
 let kScreenWidth = UIScreen.main.bounds.width

@@ -9,11 +9,12 @@
 import UIKit
 
 
-
 class STVoiceViewController: UIViewController {
     
     
     @IBOutlet weak var timeLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,10 +101,13 @@ class STVoiceViewController: UIViewController {
         } else if type == 1 {
             recorder.pause()
         }
+        
+        //SystemSound.playSystemTipAudioIsBegin(true)
     }
     
     @objc func endAction() {
         recorder.finish()
+        //SystemSound.playSystemTipAudioIsBegin(false)
     }
     
     @objc func listAction() {

@@ -63,6 +63,6 @@ class STListsViewController: UITableViewController {
     
     
 //    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        
+//
 //    }
 }

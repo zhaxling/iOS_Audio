@@ -28,10 +28,8 @@ class RootViewController: UITabBarController {
         // STLists
         self.addSubViewController(viewController: STListsViewController(), title: "列表", image: "tabbar_discover", seletedImage: "tabbar_discoverHL")
         
-        // STLists
-        self.addSubViewController(viewController: STListsViewController(), title: "列表", image: "tabbar_me", seletedImage: "tabbar_meHL")
-        
-        
+        // Me
+        self.addSubViewController(viewController: MeViewController(), title: "我的", image: "tabbar_me", seletedImage: "tabbar_meHL")
     }
     
     // 添加子控制器

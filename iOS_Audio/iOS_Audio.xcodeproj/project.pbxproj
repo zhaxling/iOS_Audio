@@ -12,6 +12,11 @@
 		1819ECCC201093A7007FA38C /* AUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819ECCA201093A7007FA38C /* AUViewController.swift */; };
 		1819ECCD201093A7007FA38C /* AUViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1819ECCB201093A7007FA38C /* AUViewController.xib */; };
 		18344125201192CE002FB9E0 /* AURecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18344124201192CE002FB9E0 /* AURecorder.m */; };
+		183A2E32202ECA6F0074C5E9 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A2E31202ECA6F0074C5E9 /* FileManager.m */; };
+		183A2E35202ED5CB0074C5E9 /* CallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A2E34202ED5CB0074C5E9 /* CallManager.m */; };
+		18452395202D3E7000F42C32 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18452394202D3E7000F42C32 /* MeViewController.swift */; };
+		18452397202D3ECD00F42C32 /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18452396202D3ECD00F42C32 /* Macro.swift */; };
+		18452399202D3F2700F42C32 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18452398202D3F2700F42C32 /* BaseTableViewController.swift */; };
 		1870797D2016E2C8000B94E2 /* SystemSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 1870797C2016E2C8000B94E2 /* SystemSound.m */; };
 		1870797F2016E2F2000B94E2 /* sound_recorder_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1870797E2016E2F2000B94E2 /* sound_recorder_click.wav */; };
 		1871A11C20219F8100C12125 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871A11A20219F8100C12125 /* AudioPlayerViewController.swift */; };
@@ -23,6 +28,7 @@
 		18739B371FEA5F0300D2B160 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18739B361FEA5F0300D2B160 /* Assets.xcassets */; };
 		18739B3A1FEA5F0300D2B160 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18739B381FEA5F0300D2B160 /* LaunchScreen.storyboard */; };
 		1875A9932008BD34004BC1A2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875A9922008BD34004BC1A2 /* AudioManager.swift */; };
+		18839D61202EF77500226C5B /* VOIPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18839D60202EF77500226C5B /* VOIPViewController.swift */; };
 		D716155D200F8AC500455B56 /* AKRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716155C200F8AC500455B56 /* AKRecorder.swift */; };
 		D787C25A20136D2900FC7199 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787C25920136D2900FC7199 /* RootViewController.swift */; };
 		D787C26220137C7400FC7199 /* URL+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787C26120137C7400FC7199 /* URL+FileManager.swift */; };
@@ -41,6 +47,13 @@
 		1819ECCB201093A7007FA38C /* AUViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AUViewController.xib; sourceTree = "<group>"; };
 		18344123201192CE002FB9E0 /* AURecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AURecorder.h; sourceTree = "<group>"; };
 		18344124201192CE002FB9E0 /* AURecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AURecorder.m; sourceTree = "<group>"; };
+		183A2E30202ECA6F0074C5E9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		183A2E31202ECA6F0074C5E9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		183A2E33202ED5CB0074C5E9 /* CallManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallManager.h; sourceTree = "<group>"; };
+		183A2E34202ED5CB0074C5E9 /* CallManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallManager.m; sourceTree = "<group>"; };
+		18452394202D3E7000F42C32 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		18452396202D3ECD00F42C32 /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
+		18452398202D3F2700F42C32 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		1870797B2016E2C8000B94E2 /* SystemSound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSound.h; sourceTree = "<group>"; };
 		1870797C2016E2C8000B94E2 /* SystemSound.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSound.m; sourceTree = "<group>"; };
 		1870797E2016E2F2000B94E2 /* sound_recorder_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_recorder_click.wav; sourceTree = "<group>"; };
@@ -55,6 +68,7 @@
 		18739B391FEA5F0300D2B160 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18739B3B1FEA5F0300D2B160 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1875A9922008BD34004BC1A2 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		18839D60202EF77500226C5B /* VOIPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOIPViewController.swift; sourceTree = "<group>"; };
 		9715C8EF004894AFE6A381A5 /* Pods-iOS_Audio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_Audio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_Audio/Pods-iOS_Audio.debug.xcconfig"; sourceTree = "<group>"; };
 		D716155C200F8AC500455B56 /* AKRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKRecorder.swift; sourceTree = "<group>"; };
 		D787C25920136D2900FC7199 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -91,10 +105,47 @@
 			path = AU;
 			sourceTree = "<group>";
 		};
+		18452390202D3E5800F42C32 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				18452391202D3E5800F42C32 /* Controller */,
+				18452392202D3E5800F42C32 /* Model */,
+				18452393202D3E5800F42C32 /* View */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		18452391202D3E5800F42C32 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18452394202D3E7000F42C32 /* MeViewController.swift */,
+				18839D60202EF77500226C5B /* VOIPViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18452392202D3E5800F42C32 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18452393202D3E5800F42C32 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		187079792016E273000B94E2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				1870797A2016E28E000B94E2 /* 音频 */,
+				183A2E30202ECA6F0074C5E9 /* FileManager.h */,
+				183A2E31202ECA6F0074C5E9 /* FileManager.m */,
+				183A2E33202ED5CB0074C5E9 /* CallManager.h */,
+				183A2E34202ED5CB0074C5E9 /* CallManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -157,6 +208,7 @@
 				1871A11420219E5900C12125 /* 播放 */,
 				1875A9912008BCE0004BC1A2 /* 录音 */,
 				D787C26320137CA800FC7199 /* Home */,
+				18452390202D3E5800F42C32 /* Me */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -179,6 +231,8 @@
 				D787C26A20137D9900FC7199 /* Const.swift */,
 				1871A11E2021A74F00C12125 /* BaseNavigationController.swift */,
 				1871A1202021A82000C12125 /* BaseViewController.swift */,
+				18452398202D3F2700F42C32 /* BaseTableViewController.swift */,
+				18452396202D3ECD00F42C32 /* Macro.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -374,13 +428,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18452395202D3E7000F42C32 /* MeViewController.swift in Sources */,
 				1871A11C20219F8100C12125 /* AudioPlayerViewController.swift in Sources */,
 				1870797D2016E2C8000B94E2 /* SystemSound.m in Sources */,
+				183A2E32202ECA6F0074C5E9 /* FileManager.m in Sources */,
 				18739B321FEA5F0300D2B160 /* ViewController.swift in Sources */,
 				D787C26220137C7400FC7199 /* URL+FileManager.swift in Sources */,
 				D787C25A20136D2900FC7199 /* RootViewController.swift in Sources */,
 				D787C26720137D6B00FC7199 /* STListsViewController.swift in Sources */,
+				18839D61202EF77500226C5B /* VOIPViewController.swift in Sources */,
 				D716155D200F8AC500455B56 /* AKRecorder.swift in Sources */,
+				18452399202D3F2700F42C32 /* BaseTableViewController.swift in Sources */,
 				1875A9932008BD34004BC1A2 /* AudioManager.swift in Sources */,
 				1871A11F2021A74F00C12125 /* BaseNavigationController.swift in Sources */,
 				1819ECC920109361007FA38C /* AUManager.swift in Sources */,
@@ -389,7 +447,9 @@
 				1819ECCC201093A7007FA38C /* AUViewController.swift in Sources */,
 				1871A1212021A82000C12125 /* BaseViewController.swift in Sources */,
 				D787C27020137DAD00FC7199 /* STVoiceViewController.swift in Sources */,
+				18452397202D3ECD00F42C32 /* Macro.swift in Sources */,
 				D787C26C20137D9900FC7199 /* Const.swift in Sources */,
+				183A2E35202ED5CB0074C5E9 /* CallManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
